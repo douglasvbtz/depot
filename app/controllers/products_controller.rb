@@ -8,6 +8,11 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    @product = Product.find_by(id: params[:id])
+    unless @product
+      flash[:alert] = "Product not found or unavaliable."
+      redirect_to store_index_url
+    end
   end
 
   # GET /products/new
