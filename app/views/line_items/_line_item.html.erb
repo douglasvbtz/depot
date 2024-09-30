@@ -12,7 +12,7 @@
     <%= number_to_currency(line_item.total_price) %>
   </td>
   <td>
-    <%= button_to '-', line_item, method: :delete,
+    <%= button_to 'x', line_item, method: :delete,
       class: 'ml-4 rounded-lg py-1 px-2 text-white bg-green-600' %>
   </td>
 </tr>
