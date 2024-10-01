@@ -1,8 +1,4 @@
-<% if line_item == @current_item %>
-<tr class="line-item-highlight">
-<% else %>
-<tr>
-<% end %>
+<tr class="<%= "line-item-highlight" if line_item == @current_item %>">
   <td class="text-right"><%= line_item.quantity %></td>
   <td>&times;</td>
   <td class="pr-2">
@@ -11,8 +7,13 @@
   <td class="text-right font-bold">
     <%= number_to_currency(line_item.total_price) %>
   </td>
-  <td>
-    <%= button_to 'x', line_item, method: :delete,
+  <td class="flex">
+    <%= button_to '-', decrement_line_item_path(line_item), method: :put,
       class: 'ml-4 rounded-lg py-1 px-2 text-white bg-green-600' %>
+
+    <%= button_to line_item, method: :delete,
+      class: 'ml-4 rounded-lg py-1 px-2 text-white bg-green-600' do %>
+      &times;
+    <% end %>
   </td>
 </tr>

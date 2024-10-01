@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: %i[ create ]
-  before_action :set_line_item, only: %i[ show edit update destroy ]
+  before_action :set_line_item, only: %i[ show edit update destroy decrement ]
 
   # GET /line_items or /line_items.json
   def index
@@ -59,6 +59,16 @@ class LineItemsController < ApplicationController
       format.html { redirect_to store_index_url }
       format.json { head :no_content }
     end
+  end
+
+  def decrement
+    if @line_item.quantity > 1
+      @line_item.quantity -= 1
+      @line_item.save
+    else
+      @line_item.destroy
+    end
+    redirect_to store_index_url
   end
 
   private
