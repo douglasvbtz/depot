@@ -68,7 +68,11 @@ class LineItemsController < ApplicationController
     else
       @line_item.destroy
     end
-    redirect_to store_index_url
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to store_index_url, notice: "Item updated" }
+    end
   end
 
   private
