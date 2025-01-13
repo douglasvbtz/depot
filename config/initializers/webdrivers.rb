@@ -1,3 +1,3 @@
 require "webdrivers"
 
-Webdrivers::Chromedriver.required_version = '129.0.6668.70'
+Webdrivers::Chromedriver.required_version = '131.0.6778.204'
