@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
   get 'logout' => 'sessions#destroy', as: :logout_via_get
 
+  # START_HIGLIGHT
+  resources :support_requests, only: %i[ index update ]
+  # END_HIGLIGHT
+
   resources :users
   resources :products do
     get :who_bought, on: :member
